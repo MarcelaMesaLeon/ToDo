@@ -32,6 +32,10 @@
     font-size: 30px;
     font-weight: bold;
   }
+
+  svg{
+    font-size: 22px;
+  }
   
   .Icon-check--active {
     color: #2E7D32;
