@@ -11,6 +11,7 @@
   }
   
   .TodoItem-p {
+    margin: 24px 0 24px 5px;
     width: calc(100% - 120px);    
     font-size: 18px;
     line-height: 24px;
@@ -28,10 +29,12 @@
     align-items: center;
     height: 100px;
     width: 55px;
+    font-size: 30px;
+    font-weight: bold;
   }
   
   .Icon-check--active {
-    color: #346b35;
+    color: #2E7D32;
   }
   
   .Icon-delete:hover {
