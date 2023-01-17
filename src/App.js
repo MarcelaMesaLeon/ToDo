@@ -8,31 +8,54 @@ import { CreateTodoButton } from "./CreateTodoButton";
 // import './App.css';
 
 const todos1 = [
-  { text: 'Cortar cebolla', completed: true },
-  { text: 'Tomar el curso de intro a React', completed: false },
-  { text: 'Llorar con la llorona', completed: false },
-  { text: 'Da na na na na na', completed: false },
-  { text: 'Cortar cebolla', completed: true },
-  { text: 'Tomar el curso de intro a React', completed: false },
-  { text: 'Llorar con la llorona', completed: false },
-  { text: 'Da na na na na na', completed: false }      
+  { text: "Cortar cebolla", completed: true },
+  { text: "Tomar el curso de intro a React", completed: false },
+  { text: "Llorar con la llorona", completed: true },
+  { text: "Da na na na na na", completed: false },
 ];
 
-let name = 'Marcela';
+let name = "Marcela";
 
 function App() {
+  const [valueSearch, setValueSearch] = React.useState("");
+  const [todos, setTodos] = React.useState(todos1);
+
+  const completedTodos = todos.filter((todo) => todo.completed).length;
+  const allTodos = todos.length;
+
+  let searchTodos = [];
+
+  if (valueSearch.length >= 1) {
+    const searchValueText = valueSearch.toLowerCase();
+    searchTodos = todos.filter((todo) => {
+      const todoText = todo.text.toLowerCase();
+      return todoText.includes(searchValueText);
+    });
+  } else {
+    searchTodos = todos;
+  }
+
   return (
     <React.Fragment>
-    <TodoCounter text = {name} />
-    <TodoSearch />
+      <TodoCounter
+        text={name}
+        completedTodos={completedTodos}
+        allTodos={allTodos}
+      />
 
-    <TodoList>
-      {todos1.map(todo => (
-        <TodoItem key={todo.text} text = {todo.text} completed = {todo.completed}/>
-      ))}
-    </TodoList>
+      <TodoSearch valueSearch={valueSearch} setValueSearch={setValueSearch} />
 
-    <CreateTodoButton />    
+      <TodoList>
+        {searchTodos.map((todo) => (
+          <TodoItem
+            key={todo.text}
+            text={todo.text}
+            completed={todo.completed}
+          />
+        ))}
+      </TodoList>
+
+      <CreateTodoButton />
     </React.Fragment>
   );
 }

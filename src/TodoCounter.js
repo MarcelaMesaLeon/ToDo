@@ -5,7 +5,7 @@ function TodoCounter(props){
     return(
         <section className="TodoCounter">
             <h2>¡{props.text}!</h2>
-            <h3>Has completado 2 de 3 TODOs</h3>
+            <h3>Has completado {props.completedTodos} de {props.allTodos} TODOs</h3>
 
         </section>
         
