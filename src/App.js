@@ -23,6 +23,20 @@ function App() {
   const completedTodos = todos.filter((todo) => todo.completed).length;
   const allTodos = todos.length;
 
+  const onComplete = (text) => {
+    const newArrayTodos = [...todos];
+    const indexTodo = newArrayTodos.findIndex(todo => todo.text === text);
+    newArrayTodos[indexTodo].completed = !newArrayTodos[indexTodo].completed;
+    setTodos(newArrayTodos)
+  };
+
+  const onDelete = (text) => {
+    const newArrayTodos = [...todos];
+    const indexTodo = newArrayTodos.findIndex(todo => todo.text === text);
+    newArrayTodos.splice(indexTodo, 1);
+    setTodos(newArrayTodos)
+  };
+
   let searchTodos = [];
 
   if (valueSearch.length >= 1) {
@@ -51,6 +65,8 @@ function App() {
             key={todo.text}
             text={todo.text}
             completed={todo.completed}
+            onComplete = {onComplete}
+            onDelete = {onDelete}
           />
         ))}
       </TodoList>
