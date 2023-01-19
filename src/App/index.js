@@ -1,11 +1,5 @@
 import React from "react";
-import { TodoCounter } from "./TodoCounter";
-import { TodoSearch } from "./TodoSearch";
-import { TodoList } from "./TodoList";
-import { TodoItem } from "./TodoItem";
-import { CreateTodoButton } from "./CreateTodoButton";
-
-// import './App.css';
+import { AppUI } from "./AppUI";
 
 const todos1 = [
   { text: "Cortar cebolla", completed: true },
@@ -14,7 +8,7 @@ const todos1 = [
   { text: "Da na na na na na", completed: false },
 ];
 
-let name = "Marcela";
+let text = "Marcela";
 
 function App() {
   const [valueSearch, setValueSearch] = React.useState("");
@@ -50,29 +44,16 @@ function App() {
   }
 
   return (
-    <React.Fragment>
-      <TodoCounter
-        text={name}
-        completedTodos={completedTodos}
-        allTodos={allTodos}
-      />
-
-      <TodoSearch valueSearch={valueSearch} setValueSearch={setValueSearch} />
-
-      <TodoList>
-        {searchTodos.map((todo) => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onComplete = {onComplete}
-            onDelete = {onDelete}
-          />
-        ))}
-      </TodoList>
-
-      <CreateTodoButton />
-    </React.Fragment>
+    <AppUI
+      text={text}
+      completedTodos={completedTodos}
+      allTodos={allTodos}
+      valueSearch={valueSearch}
+      setValueSearch={setValueSearch}
+      searchTodos={searchTodos}
+      onComplete={onComplete}
+      onDelete={onDelete}
+    />
   );
 }
 
